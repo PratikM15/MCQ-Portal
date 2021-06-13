@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/651d2edad9.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{%static 'css/style.css' %}">
+  <link rel="stylesheet" href="{%static 'css/results.css' %}">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="quiz-result">
+      <h2 class="heading">Hello {{name}} ! <br><br> You Have Attempted {{category}} Quiz Successfully !</h2><br><br>
+      {% if ques %}
+      <h3 class="result-heading">Your Score is {{score}} out of {{ques|length}}</h3>
+      {% endif %}
+
+      <div class="quiz-again">
+        <h4 style="color: gray;">Wants to take Quiz Again ?</h4>
+        <button class="btn"><a href="{%url 'home' %}">Take Quiz <i class="fas fa-undo-alt"></i> </a></button>
+      </div>
+    </div>
+
+    
+  </div>
+
+</body>
+
+</html>

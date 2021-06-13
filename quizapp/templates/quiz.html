@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Console</title>
+    
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="quiz">
+            <div class="quiz-header">
+                <div class="quiz-user">
+                    <h4>Welcome {{name}}</h4>
+                </div>
+                <div class="quiz-timer">
+                    <button class="btn btn-submit" type="submit" style="margin-right:20px" onclick="(()=>{document.getElementById('exam').submit})">Submit</button></a>
+                    <span class="time">00:00</span>
+                </div>
+            </div>
+            <div class="quiz-body">
+
+                <form id="exam" action="{%url 'results' category=category name=name %}" method="POST">{% csrf_token %}
+                {% for i in questions %}
+
+                <h2>Q.{{forloop.counter}} {{i.question}}</h2>
+                <input type="hidden" value="1.external_id" id="que">
+                <ul class="option-group">
+                    <label class="option"> <input type="radio" name="{{i.external_id}}" id="{{i.choice1}option1" value="1">
+                        {{i.choice1}}</label>
+                    <label class="option"> <input type="radio" name="{{i.external_id}}" id="{{i.choice2}option2" value="2">
+                        {{i.choice2}}</label>
+                    <label class="option"> <input type="radio" name="{{i.external_id}}" id="{{i.choice3}option3" value="3">
+                        {{i.choice3}}</label>
+                    <label class="option"> <input type="radio" name="{{i.external_id}}" id="{{i.choice4}option4" value="4">
+                        {{i.choice4}}</label>
+                </ul>
+                {% endfor %}
+    
+
+
+                <div class="paginator">
+                    <div class="form-group">
+                        {% if questions.has_previous %}
+                        <a href="?page={{ questions.previous_page_number }}"><button class="btn btn-next" onclick="saveAnswer()">Previous Question</button></a>
+
+
+                        {% endif %}
+
+                        {% if questions.has_next %}
+                        <a href="?page={{ questions.next_page_number }}">
+                            <button class="btn btn-next" type="submit" onClick="saveAnswer()" id="save_ans">Next Question</button>
+                        </a>
+                        {% else %}
+                        <a href="{%url 'results' category=category name=name %}"><button class="btn btn-submit" type="submit">Submit</button></a>
+                        {% endif %}
+
+
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        window.onload = initall;
+        var saveAnsButton;  
+        function initall() {
+            saveAnsButton = document.getElementById('save_ans')
+            saveAnsButton.onclick = saveAnswer;
+        }
+        function saveAnswer() {
+            var ans = $("input:radio[name=name]:checked").val()
+            console.log(ans)
+
+            var req = new XMLHttpRequest();
+
+            var url = 'saveans?ans=' + ans
+            req.open("GET", url, true)
+
+            req.send()
+            console.log(req.send())
+
+        }
+    </script>
+
+</body>
+
+</html>

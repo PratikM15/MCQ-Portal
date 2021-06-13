@@ -1,0 +1,180 @@
+
+/* COLORS */
+
+:root{
+    --primary:#092346;
+    --secondary:#232b38;
+    --ternary:#6c6c6c;
+    --danger:#fe4545;
+    --pure:#fefefe;
+    --light:#f0f0f0;
+    --heaven:#ffffff;
+    --footer:#2d333f;
+    --yellow:#ffee00;
+    --creamy: rgb(255, 247, 239);
+}
+@font-face{
+    font-family: "raleway-regular";
+    
+    src: url('/static/fonts/Raleway-Regular.ttf');
+}
+@font-face{
+    font-family: "raleway-bold";
+    
+    src: url('/static/fonts/Raleway-Bold.ttf');
+}
+@font-face{
+    font-family: "raleway-semibold";
+    
+    src: url('/static/fonts/Raleway-SemiBold.ttf');
+}
+@font-face{
+    font-family: "raleway-medium";
+    
+    src: url('/static/fonts/Raleway-Medium.ttf');
+}
+
+body{
+    background:var(--primary);
+}
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "raleway-regular";
+}
+.wrapper{
+    display: flex;
+    background:var(--primary);
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height:100vh ;
+
+}
+.welcome_text{
+    /* background: #ff0000; */
+    width: 400px;
+}
+.welcome_form input,
+.welcome_form button{
+    display: block;
+    width: 100%;
+}
+.welcome_form input{
+    margin-bottom: 1rem;
+    /* padding: 20px 15px; */
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgb(255, 255, 255);
+    outline: none;
+    color: rgb(255, 255, 255);
+    font-size: 1.5rem;
+    text-align: center;
+}
+.welcome_form button{
+    font-size: 22px;
+    padding: 20px 0;
+    border: none;
+    background: #ffffff;
+    border-radius: 35px;
+    outline: none;
+    color: rgb(40, 67, 156);
+    font-family: 'raleway-semibold';
+    transition: all 0.4s ease;
+}
+.welcome_form button:hover{
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+/* Quiz Page */
+.quiz{
+    display: grid;
+    grid-template-rows: 60px auto;
+    width: 70vw;
+    height: 80vh;
+    background-color: var(--heaven);
+    font-size: 1.2rem;
+    flex-wrap: wrap;
+}
+.quiz-header{
+    display: flex;
+    justify-content: space-between;
+    background: var(--heaven);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    box-shadow: 0px 2px 5px 1px rgba(155, 155, 155, 0.6);
+    z-index: 1;
+}
+
+
+.quiz-user{
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+}
+.quiz-timer{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    background: var(--yellow);
+    color: var(--secondary);
+    padding: 0 30px;
+}
+
+.quiz-body{
+    padding: 30px;
+    background: var(--light);
+    
+}
+.quiz-body .option-group{
+    list-style-type: none;
+    margin: 30px 0;
+    display: flex;
+    flex-direction: column;
+}
+.option{
+    background: var(--heaven);
+    width: 300px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 35px;
+    transition: all 0.4s ease;
+    border: 2px solid var(--heaven);
+    color: var(--secondary);
+    display: flex;
+}
+.option:hover{
+    cursor: pointer;
+    border: 2px solid var(--primary);
+    transition: all 0.4s ease;
+    color: var(--primary);
+}
+
+.btn{
+    background: var(--primary);
+    color: var(--heaven);
+    padding: 15px 35px;
+    border: none;
+    border-radius: 35px;
+    font-size: 1.2rem;
+    font-family: "raleway-semibold";
+    outline: none;
+}
+.btn:hover{
+    cursor: pointer;
+    background: var(--heaven);
+    color: var(--primary);
+    /* border: 2px solid var(--primary); */
+    box-shadow: 0px 0px 10px 1px rgba(155, 155, 155, 0.6);
+}
+
+.btn-submit{
+    background: var(--danger);
+    color: var(--secondary);
+    padding: 15px 35px;
+    border: none;
+    border-radius: 35px;
+    font-size: 1.2rem;
+    font-family: "raleway-semibold";
+    outline: none;
+}

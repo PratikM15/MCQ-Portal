@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Console</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    
+<div class="wrapper">
+    <div class="div welcome_text">
+        <form method="POST" action="{% url 'register' category=category %}" class="welcome_form" name="welcome_form" onsubmit="submitForm(event)">
+            {% csrf_token %}
+            <input type="text" name="student" placeholder="Name" style="color:white;padding-bottom: 10px;" required> 
+            <button type="submit">Start Quiz</button>
+        </form>
+    </div>
+</div>
+
+
+    <script src="{% static 'static/js/quiz.js' %}"></script>
+</body>
+</html>
