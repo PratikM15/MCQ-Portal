@@ -2,6 +2,22 @@ from django.shortcuts import render,redirect
 from django.core.paginator import Paginator,EmptyPage,InvalidPage
 from .models import *
 
+
+
+def register_page(request):
+    return render(request, 'userRegister.html')
+    
+
+def login_page(request):
+    return render(request,'login.html')
+
+
+
+
+
+
+
+
 def home(request):
     return render(request,'index.html')
 
@@ -32,3 +48,5 @@ def results(request, category, name):
                 score += 1
         return render(request,'dummy.html',{'score':score,'ques':ques, 'name':name, 'category':category})
     return redirect('home')
+
+
