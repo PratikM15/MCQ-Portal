@@ -15,32 +15,9 @@
 </head>
 
 <body>
-  
-    <!-- Header Section -->
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background: #092346;">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
-            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="/"> Exammer</a>
-
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </div>
-    </nav>
-    <!-- Header Section Ends Here -->
-
+    <!-- Header section -->
+    {% include "quizapp/header.html" %}
+    <!-- Header Section ends -->
 
     <div class="container border-rounded mt-5 p-5 shadow shadow-lg">
         <div class="row">
@@ -49,7 +26,8 @@
                     <div class="card-body">
                         <h5 class="card-title">Python Quiz</h5>
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="{% url 'register' category='Python' %}" class="btn text-white" style="background: #092346;">Take a Quiz</a>
+                        <a href="{% url 'register' category='Python' %}" class="btn text-white"
+                            style="background: #092346;">Take a Quiz</a>
                     </div>
                 </div>
             </div>
@@ -58,7 +36,8 @@
                     <div class="card-body">
                         <h5 class="card-title">DBMS</h5>
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="{% url 'register' category='DBMS' %}" class="btn text-white" style="background: #092346;">Take A Quiz</a>
+                        <a href="{% url 'register' category='DBMS' %}" class="btn text-white"
+                            style="background: #092346;">Take A Quiz</a>
                     </div>
                 </div>
             </div>
@@ -67,7 +46,8 @@
                     <div class="card-body">
                         <h5 class="card-title">DSA</h5>
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="{% url 'register' category='DSA' %}" class="btn text-white" style="background: #092346;">Take A Quiz</a>
+                        <a href="{% url 'register' category='DSA' %}" class="btn text-white"
+                            style="background: #092346;">Take A Quiz</a>
                     </div>
                 </div>
             </div>
@@ -76,7 +56,8 @@
                     <div class="card-body">
                         <h5 class="card-title">Aptitude</h5>
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="{% url 'register' category='Aptitude' %}" class="btn text-white" style="background: #092346;">Take A Quiz</a>
+                        <a href="{% url 'register' category='Aptitude' %}" class="btn text-white"
+                            style="background: #092346;">Take A Quiz</a>
                     </div>
                 </div>
             </div>
