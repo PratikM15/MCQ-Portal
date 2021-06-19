@@ -15,7 +15,7 @@ def register(request, category):
 def questionportal(request, category, name):
     test = Test.objects.get(category=category)
     questions = Question.objects.filter(test=test)
-    context = {'questions':questions, "name":name, 'category':category}
+    context = {'questions':questions, "name":name, 'category':category, "time":test.test_time}
     return render(request,'quiz.html',context=context)
 
     
