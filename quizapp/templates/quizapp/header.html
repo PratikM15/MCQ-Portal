@@ -1,0 +1,56 @@
+{% load static %}
+    <!-- Header Section -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background: #092346;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href=""> Exammer</a>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+            </ul>
+
+            {% if user.is_authenticated %}
+
+
+            <ul class="navbar-nav ">
+
+                <li class="nav-item dropdown">
+
+                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                        data-toggle="dropdown"> <span class="text-light m-2" style="font-size: 1.1rem;"> {{request.user |title}}</span></a>
+
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a href="{%url 'logout_page' %}" class="dropdown-item">Logout</a>
+                        <a href="#" class="dropdown-item">Another action</a>
+                        <div class="dropdown-divider"></div>
+                    </div>
+                </li>
+                <img src="{%static 'images/userprofile.png' %}" alt="" style="height:80%; width: 80%;" class="my-auto">
+            </ul>
+
+            {% else %}
+            <button type="button" class="btn btn-primary"><a class="text-white"
+                    href="{%url 'register_page'%}">Signup</a></button>
+
+            <button type="button" class="btn btn-success m-2"><a class="text-white"
+                    href="{%url 'login_page'%}">Login</a></button>
+            {% endif %}
+        </div>
+    </nav>
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message : </strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    <!-- Header Section Ends Here -->
