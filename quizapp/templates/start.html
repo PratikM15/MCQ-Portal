@@ -10,12 +10,15 @@
 <body>
     
 <div class="wrapper">
-    <div class="div welcome_text">
-        <form method="POST" action="{% url 'register' category=category %}" class="welcome_form" name="welcome_form" onsubmit="submitForm(event)">
-            {% csrf_token %}
-            <input type="text" name="student" placeholder="Name" style="color:white;padding-bottom: 10px;" required> 
-            <button type="submit">Start Quiz</button>
-        </form>
+    <div class="div">
+            <h1>Instructions</h1><br>
+            <ul class="list-group">
+                <li class="list-group-item">Test contains multiple choice questions</li>
+                <li class="list-group-item">Test will automatically submit when time ends</li>
+            </ul>
+            <br>
+            <a href="{% url 'questionportal' category=category %}"><button class="btn btn-info">Start Quiz</button></a>
+    
     </div>
 </div>
 

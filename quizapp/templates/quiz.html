@@ -19,13 +19,14 @@
                     <h4>Welcome {{name}}</h4>
                 </div>
                 <div class="quiz-timer">
-                    <button class="btn btn-submit" type="submit" style="margin-right:20px" onclick="(()=>{document.getElementById('exam').submit})">Submit</button></a>
+                    <button class="btn btn-submit" style="margin-right:20px" onclick="submitForm()">Submit</button></a>
                     <span class="time" id="counter">00:00</span>
                 </div>
             </div>
             <div class="quiz-body">
 
-                <form id="exam" action="{%url 'results' category=category name=name %}" method="POST">{% csrf_token %}
+                <form id="exam" action="{%url 'result' category=category %}" method="POST">{% csrf_token %}
+                    <input type="hidden" name="ext_id" value="{{student.external_id}}">
                 {% for i in questions %}
 
                 <h2>Q.{{forloop.counter}} {{i.question}}</h2>
@@ -41,28 +42,7 @@
                         {{i.choice4}}</label>
                 </ul>
                 {% endfor %}
-    
-
-
-                <div class="paginator">
-                    <div class="form-group">
-                        {% if questions.has_previous %}
-                        <a href="?page={{ questions.previous_page_number }}"><button class="btn btn-next" onclick="saveAnswer()">Previous Question</button></a>
-
-
-                        {% endif %}
-
-                        {% if questions.has_next %}
-                        <a href="?page={{ questions.next_page_number }}">
-                            <button class="btn btn-next" type="submit" onClick="saveAnswer()" id="save_ans">Next Question</button>
-                        </a>
-                        {% else %}
-                        <a href="{%url 'results' category=category name=name %}"><button class="btn btn-submit" type="submit">Submit</button></a>
-                        {% endif %}
-
-
-                    </div>
-                </div>
+                <button type="submit">Submit</button>
                 </form>
             </div>
         </div>
@@ -75,7 +55,6 @@
             var mins = minutes
 
             function tick() {
-                //This script expects an element with an ID = "counter". You can change that to what ever you want. 
                 var counter = document.getElementById("counter");
                 var current_minutes = mins-1
                 seconds--;

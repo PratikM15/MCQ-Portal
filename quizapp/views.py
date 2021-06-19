@@ -67,20 +67,27 @@ def home(request):
 @login_required(login_url='login_page')
 def register(request, category):
     if request.method == 'POST':
-        name = request.POST["student"]
-        return redirect('questionportal', category, name)
+        username = request.user
+        user = User.objects.get(username=username)
+        return redirect('questionportal', category)
     return render(request,'start.html', {'category':category})
 
 @login_required(login_url='login_page')
-def questionportal(request, category, name):
+def questionportal(request, category):
+    username = request.user
+    user = User.objects.get(username=username)
     test = Test.objects.get(category=category)
     questions = Question.objects.filter(test=test)
-    context = {'questions':questions, "name":name, 'category':category, "time":test.test_time}
+    student = Student(user=user, test=test, score=0)
+    student.save()
+    context = {'questions':questions, 'category':category, "time":test.test_time, "student":student}
     return render(request,'quiz.html',context=context)
 
     
-def results(request, category, name):
+def result(request, category):
     if request.method == "POST":
+        student_id = request.POST["ext_id"]
+        student = Student.objects.get(external_id=student_id)
         test = Test.objects.get(category=category)
         ques = Question.objects.filter(test=test)
         score = 0
@@ -90,7 +97,19 @@ def results(request, category, name):
             print(que_name, que_answer)
             if que_answer == que.answer:
                 score += 1
-        return render(request,'dummy.html',{'score':score,'ques':ques, 'name':name, 'category':category})
+        student.score = score
+        student.completed = True
+        student.save()
+        return render(request,'dummy.html',{'score':score,'ques':ques, 'category':category})
     return redirect('home')
+
+@login_required(login_url='login_page')
+def results(request):
+    username = request.user
+    user = User.objects.get(username=username)
+    tests = Student.objects.filter(user=user)
+    context = {"responses": tests}
+    return render(request, 'results.html', context)
+    
 
 

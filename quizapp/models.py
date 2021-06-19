@@ -1,5 +1,6 @@
 from django.db import models
 import uuid
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Test(models.Model):
@@ -12,19 +13,16 @@ class Test(models.Model):
     def __str__(self):
         return self.category
 
-"""class Student(models.Model):
+class Student(models.Model):
     external_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    name = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
-    mobile = models.CharField(max_length=20)
-    password = models.CharField(max_length=20)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     test = models.ForeignKey(Test, on_delete=models.DO_NOTHING)
     score = models.CharField(max_length=3)
     completed = models.BooleanField(default=False)
-    remaining_time = models.CharField(default="60", max_length=3)
+    remaining_time = models.CharField(default="", max_length=3)
 
     def __str__(self):
-        return self.name + " " + str(self.test.code)"""
+        return self.name + " " + str(self.test.code)
 
 class Question(models.Model):
     external_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
@@ -41,8 +39,7 @@ class Question(models.Model):
 
 class StudentResponse(models.Model):
     external_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    student = models.CharField(max_length=200)
-    #student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     answer = models.CharField(max_length=1)
     test = models.ForeignKey(Test, on_delete=models.DO_NOTHING)
