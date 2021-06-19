@@ -35,7 +35,7 @@
 }
 
 body{
-    background:var(--primary);
+    background-color: #070b41;
 }
 *{
     padding: 0;
