@@ -6,21 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exam Console</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Exammer</title>
 </head>
 <body>
     
 <div class="wrapper">
-    <div class="div">
-            <h1>Instructions</h1><br>
+
+    <div class="card bg-white p-3 shadow-lg">
+            <h1 class="text-primary heading">Instructions</h1><br>
             <ul class="list-group">
-                <li class="list-group-item">Test contains multiple choice questions</li>
-                <li class="list-group-item">Test will automatically submit when time ends</li>
+                <li class="list-group-item ">👉 Test contains multiple choice questions</li>
+                <li class="list-group-item ">👉 Test will automatically submit when time ends</li>
             </ul>
+
             <br>
             <a href="{% url 'questionportal' category=category %}"><button class="btn btn-info">Start Quiz</button></a>
     
     </div>
 </div>
+
 
 
     <script src="{% static 'static/js/quiz.js' %}"></script>

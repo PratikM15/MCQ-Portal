@@ -19,6 +19,9 @@
     {% include "quizapp/header.html" %}
     <!-- Header Section ends -->
 
+  
+
+
     <div class="container border-rounded mt-5 p-5 shadow shadow-lg">
         <div class="row">
             <div class="col-sm-6 p-3">
@@ -65,7 +68,13 @@
     </div>
 
 
-
+    <div class="card mt-5 bg-light m" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Register as Organizer</h5>
+            <a href="{% url 'organizer_registration' %}" class="card-link">Register here</a>
+            <a href="{% url 'organizer_login' %}" class="card-link">Login </a>
+        </div>
+    </div>
 
 
     <!-- Optional JavaScript -->

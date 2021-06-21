@@ -55,6 +55,9 @@ def logout_page(request):
     return redirect('home')
 
 
+def userProfile(request):
+    return render(request, 'quizapp/userProfile.html')
+
 
 
 

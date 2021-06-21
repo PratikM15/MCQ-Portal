@@ -18,4 +18,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('quizapp.urls')),
+    path('organizer_dashboard/',include('organizer_dashboard.urls')),
 ]
