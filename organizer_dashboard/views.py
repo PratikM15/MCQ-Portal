@@ -46,3 +46,8 @@ def organizer_login(request):
 
 
     return render(request,'organizer_Login.html')
+
+def o_logout(request):
+    logout(request)
+    messages.success(request,"Successfully Logged Out")
+    return redirect('home')

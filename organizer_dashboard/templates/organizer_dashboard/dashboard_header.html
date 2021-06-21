@@ -30,23 +30,23 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
                     <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                         data-toggle="dropdown"> <span class="text-light m-2" style="font-size: 1.1rem;"> </span></a>
-
+                    {% if user.is_authenticated %}
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a href="{%url 'logout_page' %}" class="dropdown-item">Logout</a>
-                        <a href="{% url 'results' %}" class="dropdown-item">Recent Results</a>
+                        
                         <div class="dropdown-divider"></div>
                     </div>
                 </li>
                 <img src="{%static 'images/userprofile.png' %}" alt="" style="height:80%; width: 80%;" class="my-auto">
             </ul>
 
-        
+        {% else %}
             <button type="button" class="btn btn-primary"><a class="text-white"
-                    href="{%url 'register_page'%}">Signup</a></button>
+                    href="{%url 'organizer_registration'%}">Signup</a></button>
 
             <button type="button" class="btn btn-success m-2"><a class="text-white"
-                    href="{%url 'login_page'%}">Login</a></button>
-         
+                    href="{%url 'organizer_login'%}">Login</a></button>
+         {% endif%}
         </div>
     </nav>
     
@@ -58,3 +58,13 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
     </div>
  
     <!-- Header Section Ends Here -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+    integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+    crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
