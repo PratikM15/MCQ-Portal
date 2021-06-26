@@ -2,6 +2,7 @@ from django.shortcuts import render,HttpResponse,redirect
 from django.contrib.auth import authenticate, login , logout
 from django.contrib.auth.models import User
 from django.contrib import messages
+from quizapp.models import *
 # Create your views here.
 
 def organizer_dashboard(request):
@@ -23,6 +24,8 @@ def organizer_registration(request):
         #creating Organizer
         organizer = User.objects.create_user(username=register_o_username,email=register_o_email,password=register_o_password)
         organizer.save()
+        profile = Profile(user=organizer)
+        profile.save()
         messages.success(request,"Congratulations ! Organizer account has been Successfully created.")
 
         return redirect('organizer_login')

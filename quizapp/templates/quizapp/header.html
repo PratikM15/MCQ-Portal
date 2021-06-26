@@ -28,6 +28,7 @@
                         data-toggle="dropdown"> <span class="text-light m-2" style="font-size: 1.1rem;"> {{request.user |title}}</span></a>
 
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a href="{%url 'user-profile' %}" class="dropdown-item">Profile</a>
                         <a href="{%url 'logout_page' %}" class="dropdown-item">Logout</a>
                         <a href="{% url 'results' %}" class="dropdown-item">Recent Results</a>
                         <div class="dropdown-divider"></div>

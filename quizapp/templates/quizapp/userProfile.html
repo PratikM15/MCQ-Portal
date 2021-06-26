@@ -8,48 +8,53 @@
 <div class="container border rounded shadow p-3 mt-5"> 
     <h2 class="heading text-center text-success">{{request.user | title}}</h2>
     <hr class="hr">
-    <form class="row g-3">
+    <form action="{% url 'user-profile' %}" method="POST" class="row g-3">{% csrf_token %}
+      <div class="col-md-6">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" value="{{profile.name}}">
+      </div>
         <div class="col-md-6">
           <label for="inputEmail4" class="form-label">Email</label>
-          <input type="email" class="form-control" id="inputEmail4">
-        </div>
-        <div class="col-md-6">
-          <label for="inputPassword4" class="form-label">Password</label>
-          <input type="password" class="form-control" id="inputPassword4">
+          <input type="email" class="form-control" id="inputEmail4" name="email" value="{{user.email}}" readonly>
         </div>
         <div class="col-12">
-          <label for="inputAddress" class="form-label">Address</label>
-          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+          <label for="inputAddress" class="form-label">Address 1</label>
+          <input type="text" class="form-control" id="inputAddress" name="address1" value="{{profile.address1}}">
         </div>
         <div class="col-12">
           <label for="inputAddress2" class="form-label">Address 2</label>
-          <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+          <input type="text" class="form-control" id="inputAddress2" name="address2" value="{{profile.address2}}">
         </div>
         <div class="col-md-6">
           <label for="inputCity" class="form-label">City</label>
-          <input type="text" class="form-control" id="inputCity">
+          <input type="text" class="form-control" id="inputCity" name="city" value="{{profile.city}}">
         </div>
         <div class="col-md-4">
           <label for="inputState" class="form-label">State</label>
-          <select id="inputState" class="form-select">
-            <option selected>Choose...</option>
-            <option>...</option>
-          </select>
+          <input type="text" class="form-control" id="inputState" name="state" value="{{profile.state}}">
         </div>
         <div class="col-md-2">
           <label for="inputZip" class="form-label">Zip</label>
-          <input type="text" class="form-control" id="inputZip">
+          <input type="text" class="form-control" id="inputZip" name="zip" value="{{profile.zip}}">
+        </div>
+        <div class="col-md-6">
+          <label for="profession" class="form-label">Profession</label>
+          <input type="text" class="form-control" id="profession" name="profession" value="{{profile.profession}}">
+        </div>
+        <div class="col-md-6">
+          <label for="domain" class="form-label">Domain</label>
+          <input type="text" class="form-control" id="domain" name="domain" value="{{profile.domain}}">
+        </div>
+        <div class="col-md-6">
+          <label for="company" class="form-label">Company/Institute</label>
+          <input type="text" class="form-control" id="company" name="company" value="{{profile.company}}">
+        </div>
+        <div class="col-md-6">
+          <label for="experience" class="form-label">Experience</label>
+          <input type="text" class="form-control" id="experience" name="experience" value="{{profile.experience}}">
         </div>
         <div class="col-12">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-              Check me out
-            </label>
-          </div>
-        </div>
-        <div class="col-12">
-          <button type="submit" class="btn" style="background:#092346;"><a href="#" class="text-decoration-none text-white">Edit Profile</a></button>
+          <button type="submit" class="btn" style="background:#092346;color: white;">Update</button>
         </div>
       </form>
 
