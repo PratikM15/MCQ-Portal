@@ -9,6 +9,7 @@ class Test(models.Model):
     description = models.CharField(max_length=200)
     active = models.BooleanField(default=True)
     test_time = models.CharField(max_length=3, default=None)
+    
 
     def __str__(self):
         return self.category

@@ -16,9 +16,33 @@
     <!-- Header Section Ends Here -->
 
 
+    <div class="container w-75 border mt-2 p-4 rounded rounded-lg shadow-lg">
+        <h2 class="h2 text-center mb-4">Dashboard Task</h2>
+        <div class="row">
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Create Test </h5>
+                  <p class="card-text">Add test for subject you want.</p>
+                  <a href="{% url 'addtest' %}" class="btn btn-primary">Add test</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Add Questions</h5>
+                  <p class="card-text">Add Questions for thr test you have created.</p>
+                  <a href="{% url 'addQuestions' %}" class="btn btn-primary">Add Question</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+    </div>
 
 
-    <h2 class="heading">Organizer Dashboard</h2>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
         crossorigin="anonymous"></script>
