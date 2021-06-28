@@ -23,6 +23,7 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
            
 
+            {% if user.is_authenticated %}
 
             <ul class="navbar-nav ">
 
@@ -30,12 +31,12 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
                     <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                         data-toggle="dropdown"> <span class="text-light m-2" style="font-size: 1.1rem;"> </span></a>
-                    {% if user.is_authenticated %}
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a href="{%url 'logout_page' %}" class="dropdown-item">Logout</a>
                         
-                        <div class="dropdown-divider"></div>
-                    </div>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a href="{%url 'o_logout' %}" class="dropdown-item">Logout</a>
+            
+                            <div class="dropdown-divider"></div>
+                        </div>
                 </li>
                 <img src="{%static 'images/userprofile.png' %}" alt="" style="height:80%; width: 80%;" class="my-auto">
             </ul>
