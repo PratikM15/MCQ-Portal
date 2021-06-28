@@ -2,6 +2,8 @@ from django.shortcuts import render,HttpResponse,redirect
 from django.contrib.auth import authenticate, login , logout
 from django.contrib.auth.models import User
 from django.contrib import messages
+from quizapp.models import *
+from .forms import AddQuestionForm
 # Create your views here.
 
 def organizer_dashboard(request):
@@ -23,6 +25,8 @@ def organizer_registration(request):
         #creating Organizer
         organizer = User.objects.create_user(username=register_o_username,email=register_o_email,password=register_o_password)
         organizer.save()
+        profile = Profile(user=organizer)
+        profile.save()
         messages.success(request,"Congratulations ! Organizer account has been Successfully created.")
 
         return redirect('organizer_login')
@@ -51,3 +55,57 @@ def o_logout(request):
     logout(request)
     messages.success(request,"Successfully Logged Out")
     return redirect('home')
+
+def addtest(request):
+    if request.method == 'POST':
+        category = request.POST['category']
+        desc = request.POST['desc']
+        time = request.POST['time']
+        testInfo  = Test(category=category,description=desc,test_time=time)
+        testInfo.save()
+        message = "Test for {} category created successfully.".format(category)
+        messages.success(request, message)
+        return redirect('o_dashboard')
+        
+    return render(request,'organizer_dashboard/addtestForm.html')
+    
+
+def addQuestions(request):
+    
+    test = Test.objects.all()
+
+    if request.method == 'POST':
+        question = request.POST['question']
+        choice1 = request.POST['choice1']
+        choice2 = request.POST['choice2']
+        choice3 = request.POST['choice3']
+        choice4 = request.POST['choice4']
+        correctchoice = request.POST['correctchoice']
+        category = request.POST['category']
+
+        test = Test.objects.filter()
+
+        create_question = Question(question=question,choice1=choice1,choice2=choice2,choice3=choice3,choice4=choice4,answer=correctchoice,category=category)
+        create_question.save()
+        msg2 = "Question added to question bank."
+        messages.success(request, msg2)
+        return redirect('addQuestion')
+
+        
+        # if create_question.objects.filter(question=question).first():
+        #     msg = "{} is already added to question bank.".format(question)
+        #     messages.warning(request, msg)
+        #     return redirect('addQuestion')
+        # else:
+        #     create_question.save()
+        #     msg2 = "Question added to question bank."
+        #     messages.success(request, msg2)
+        #     return redirect('addQuestion')
+
+    
+    context = { 'test':test}
+    
+
+
+
+    return render(request,'organizer_dashboard/addQuestionForm.html',context=context)

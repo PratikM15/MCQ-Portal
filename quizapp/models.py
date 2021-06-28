@@ -9,6 +9,8 @@ class Test(models.Model):
     description = models.CharField(max_length=200)
     active = models.BooleanField(default=True)
     test_time = models.CharField(max_length=3, default=None)
+    
+    
 
     def __str__(self):
         return self.category
@@ -46,3 +48,20 @@ class StudentResponse(models.Model):
     
     def __str__(self):
         return self.name + " " + str(self.test.code)
+
+class Profile(models.Model):
+    external_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200, default="")
+    address1 = models.CharField(max_length=500, default="")
+    address2 = models.CharField(max_length=500, default="")
+    city = models.CharField(max_length=200, default="")
+    state = models.CharField(max_length=200, default="")
+    zip = models.CharField(max_length=200, default="")
+    profession = models.CharField(max_length=200, default="")
+    domain = models.CharField(max_length=200, default="")
+    company = models.CharField(max_length=200, default="")
+    experience = models.CharField(max_length=200, default="")
+
+    def __str__(self):
+        return self.user

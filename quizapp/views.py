@@ -23,6 +23,8 @@ def register_page(request):
         # Create the user
         myuser = User.objects.create_user(username=username,email=email,password=password)
         myuser.save()
+        profile = Profile(user=myuser)
+        profile.save()
         messages.success(request,"Congratulations ! Exammer account has been Successfully created.")
         return redirect('login_page')
     
@@ -56,12 +58,33 @@ def logout_page(request):
 
 
 def userProfile(request):
-    return render(request, 'quizapp/userProfile.html')
-
-
-
-
-
+    user = User.objects.get(username=request.user)
+    profile = Profile.objects.get(user=user)
+    if request.method == "POST":
+        name = request.POST["name"]
+        address1 = request.POST["address1"]
+        address2 = request.POST["address2"]
+        city = request.POST["city"]
+        state = request.POST["state"]
+        zipcode = request.POST["zip"]
+        profession = request.POST["profession"]
+        domain = request.POST["domain"]
+        company = request.POST["company"]
+        experience = request.POST["experience"]
+        profile.name = name
+        profile.address1 = address1
+        profile.address2 = address2
+        profile.city = city
+        profile.state = state
+        profile.zip = zipcode
+        profile.profession = profession
+        profile.domain = domain
+        profile.company = company
+        profile.experience = experience
+        profile.save()
+        return redirect("user-profile")
+    context = {"profile":profile, "user":user}
+    return render(request, 'quizapp/userProfile.html', context)
 
 
 def home(request):
