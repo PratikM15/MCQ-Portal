@@ -57,22 +57,25 @@ def o_logout(request):
     return redirect('home')
 
 def addtest(request):
+    username = request.user
+    user = User.objects.get(username=username)
     if request.method == 'POST':
         category = request.POST['category']
         desc = request.POST['desc']
         time = request.POST['time']
-        testInfo  = Test(category=category,description=desc,test_time=time)
+        testInfo  = Test(user=user,category=category,description=desc,test_time=time)
         testInfo.save()
         message = "Test for {} category created successfully.".format(category)
         messages.success(request, message)
         return redirect('o_dashboard')
-        
-    return render(request,'organizer_dashboard/addtestForm.html')
+    tests = Test.objects.filter(user=user)
+    context = {"tests":tests}
+    return render(request,'organizer_dashboard/addtestForm.html', context)
     
 
 def addQuestions(request):
-    
-    test = Test.objects.all()
+    username = request.user
+    user = User.objects.get(username=username)
 
     if request.method == 'POST':
         question = request.POST['question']
@@ -82,14 +85,12 @@ def addQuestions(request):
         choice4 = request.POST['choice4']
         correctchoice = request.POST['correctchoice']
         category = request.POST['category']
-
-        test = Test.objects.filter()
-
-        create_question = Question(question=question,choice1=choice1,choice2=choice2,choice3=choice3,choice4=choice4,answer=correctchoice,category=category)
+        test = Test.objects.get(external_id=category)
+        create_question = Question(test=test, question=question,choice1=choice1,choice2=choice2,choice3=choice3,choice4=choice4,answer=correctchoice)
         create_question.save()
         msg2 = "Question added to question bank."
         messages.success(request, msg2)
-        return redirect('addQuestion')
+        return redirect('addQuestions')
 
         
         # if create_question.objects.filter(question=question).first():
@@ -101,9 +102,13 @@ def addQuestions(request):
         #     msg2 = "Question added to question bank."
         #     messages.success(request, msg2)
         #     return redirect('addQuestion')
-
     
-    context = { 'test':test}
+    tests = Test.objects.filter(user=user)
+    questions = []
+    for test in tests:
+        questions += list(Question.objects.filter(test=test))
+    print(tests)
+    context = { 'tests':tests, 'questions':questions}
     
 
 

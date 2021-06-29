@@ -23,3 +23,26 @@
      <a href="{% url 'o_dashboard' %}" class="text-danger m-4"><strong>Cancel</strong> </a>
    </form>
 </div>
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Test</th>
+        <th scope="col">Time</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for test in tests %}
+      <tr>
+        <th scope="row">{{test.category}}</th>
+        <td>{{test.test_time}}</td>
+        <td><a href=""><button class="btn btn-warning">Edit</button></a></td>
+        <td><a href=""><button class="btn btn-danger">Delete</button></a></td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+  </div>

@@ -22,25 +22,11 @@
             </li>
         </ul>
 
-            {% if user.is_authenticated %}
 
-        {% if o_user.is_authenticated %}
+        {% if user.username %}
 
         <ul class="navbar-nav ">
 
-<<<<<<< HEAD
-                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                        data-toggle="dropdown"> <span class="text-light m-2" style="font-size: 1.1rem;"> </span></a>
-                        
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a href="{%url 'o_logout' %}" class="dropdown-item">Logout</a>
-            
-                            <div class="dropdown-divider"></div>
-                        </div>
-                </li>
-                <img src="{%static 'images/userprofile.png' %}" alt="" style="height:80%; width: 80%;" class="my-auto">
-            </ul>
-=======
             <li class="nav-item dropdown">
 
                 <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
@@ -55,7 +41,6 @@
             </li>
             <img src="{%static 'images/userprofile.png' %}" alt="" style="height:80%; width: 80%;" class="my-auto">
         </ul>
->>>>>>> 1ebe75fac5315e8cb241a85c3402b2f9059267ee
 
         {% else %}
         <button type="button" class="btn btn-outline-success"><a class="text-white text-decoration-none"

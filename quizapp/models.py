@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Test(models.Model):
     external_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
     active = models.BooleanField(default=True)
