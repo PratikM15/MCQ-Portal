@@ -92,16 +92,6 @@ def addQuestions(request):
         messages.success(request, msg2)
         return redirect('addQuestions')
 
-        
-        # if create_question.objects.filter(question=question).first():
-        #     msg = "{} is already added to question bank.".format(question)
-        #     messages.warning(request, msg)
-        #     return redirect('addQuestion')
-        # else:
-        #     create_question.save()
-        #     msg2 = "Question added to question bank."
-        #     messages.success(request, msg2)
-        #     return redirect('addQuestion')
     
     tests = Test.objects.filter(user=user)
     questions = []
