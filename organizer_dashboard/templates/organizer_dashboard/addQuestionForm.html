@@ -34,13 +34,29 @@
             <input type="text" class="form-control" id="correctoption" name="correctchoice"
                 placeholder="Correct Choice e.g; 1">
         </div>
-        <div class="form-group">
-            <select class="form-control form-control-sm" name ="category">
-                {% for item in tests %}
 
-                <option value="{{item.external_id}}">{{item.category}}</option>
-                {%endfor%}
-            </select>
+        <div class="form-row mb-3">
+            <div class="col">
+                <select class="form-control form-control-sm" name ="category">
+                    {% for item in tests %}
+    
+                    <option value="{{item.external_id}}">{{item.category}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+            <div class="col">
+                <select class="form-control form-control-sm" name ="levelofDiff" placeholder="Level of Question" required>
+
+                    <option value="" disabled selected hidden>---Level of Question---</option>
+                    <option value="">Easy</option>
+                    <option value="">Medium</option>
+                    <option value="">Hard</option>
+                   
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+           
         </div>
 
         <button type="submit" class="btn btn-success">Save & Add Another Question</button>
