@@ -7,7 +7,12 @@ from .forms import AddQuestionForm
 # Create your views here.
 
 def organizer_dashboard(request):
-    return render(request,'organizer_dashboard/o_dashboard.html')
+    username = request.user
+    user = User.objects.get(username=username)
+    profile = Profile.objects.get(user=user)
+    if profile.is_organizer:
+        return render(request,'organizer_dashboard/o_dashboard.html')
+    return redirect('organizer_registration')
 
 def organizer_registration(request):
     if request.method == 'POST':
@@ -25,7 +30,7 @@ def organizer_registration(request):
         #creating Organizer
         organizer = User.objects.create_user(username=register_o_username,email=register_o_email,password=register_o_password)
         organizer.save()
-        profile = Profile(user=organizer)
+        profile = Profile(user=organizer, is_organizer=True)
         profile.save()
         messages.success(request,"Congratulations ! Organizer account has been Successfully created.")
 

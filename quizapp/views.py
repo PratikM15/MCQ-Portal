@@ -23,7 +23,7 @@ def register_page(request):
         # Create the user
         myuser = User.objects.create_user(username=username,email=email,password=password)
         myuser.save()
-        profile = Profile(user=myuser)
+        profile = Profile(user=myuser, is_user=True, is_organizer=False)
         profile.save()
         messages.success(request,"Congratulations ! Exammer account has been Successfully created.")
         return redirect('login_page')
@@ -88,7 +88,12 @@ def userProfile(request):
 
 
 def home(request):
-    return render(request,'index.html')
+    username = request.user
+    user = User.objects.get(username=username)
+    profile = Profile.objects.get(user=user)
+    tests = Test.objects.all()
+    context = {'tests':tests, 'profile': profile}
+    return render(request,'index.html', context)
 
 @login_required(login_url='login_page')
 def register(request, category):

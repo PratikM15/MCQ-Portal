@@ -35,7 +35,9 @@ class Question(models.Model):
     choice3 = models.CharField(max_length=500)
     choice4 = models.CharField(max_length=500)
     answer = models.CharField(max_length=1)
-    test = models.ForeignKey(Test, on_delete=models.DO_NOTHING)
+    compulsary = models.BooleanField(default=False)
+    level = models.CharField(default="", max_length=100)
+    test = models.ForeignKey(Test, on_delete=models.CASCADE)
  
     def __str__(self):
         return self.question
@@ -63,6 +65,8 @@ class Profile(models.Model):
     domain = models.CharField(max_length=200, default="")
     company = models.CharField(max_length=200, default="")
     experience = models.CharField(max_length=200, default="")
+    is_user = models.BooleanField(default=True)
+    is_organizer = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user

@@ -24,46 +24,18 @@
 
     <div class="container border-rounded mt-5 p-5 shadow shadow-lg">
         <div class="row">
+            {% for test in tests %}
             <div class="col-sm-6 p-3">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Python Quiz</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="{% url 'register' category='Python' %}" class="btn text-white"
+                        <h5 class="card-title">{{test.category}}</h5>
+                        <p class="card-text">{{test.description}}</p>
+                        <a href="{% url 'register' category=test.category %}" class="btn text-white"
                             style="background: #092346;">Take a Quiz</a>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 p-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">DBMS</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="{% url 'register' category='DBMS' %}" class="btn text-white"
-                            style="background: #092346;">Take A Quiz</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 p-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">DSA</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="{% url 'register' category='DSA' %}" class="btn text-white"
-                            style="background: #092346;">Take A Quiz</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 p-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Aptitude</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="{% url 'register' category='Aptitude' %}" class="btn text-white"
-                            style="background: #092346;">Take A Quiz</a>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 
@@ -72,8 +44,8 @@
         <div class="card-body" style="background-color: #092346;color:white">
             <center>
             <h5 class="card-title">Register as Organizer</h5>
-            <a href="{% url 'organizer_registration' %}" class="card-link">Register here</a>
-            <a href="{% url 'organizer_login' %}" class="card-link">Login </a></center>
+            <a href="{% url 'organizer_registration' %}" class="card-link"><button type="button" class="btn btn-info m-2">Register here</button></a>
+            <a href="{% url 'organizer_login' %}" class="card-link"><button type="button" class="btn btn-warning m-2">Login</button> </a></center>
         </div>
     </div>
 
