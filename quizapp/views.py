@@ -93,6 +93,9 @@ def home(request):
     profile = Profile.objects.get(user=user)
     tests = Test.objects.all()
     context = {'tests':tests, 'profile': profile}
+    # context = {'tests':tests}
+
+    
     return render(request,'index.html', context)
 
 @login_required(login_url='login_page')
