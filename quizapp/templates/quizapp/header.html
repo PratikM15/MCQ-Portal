@@ -19,22 +19,17 @@
             aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href=""> Exammer</a>
+        <a class="navbar-brand" href="/"> Exammer</a>
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{%url 'home'%}">Home </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-            </ul>
 
+            <ul class="navbar-nav ml-auto">
+                
+            
             {% if user.is_authenticated %}
 
 
-            <ul class="navbar-nav ">
+            <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item dropdown">
 
@@ -45,6 +40,9 @@
                         <a href="{%url 'user-profile' %}" class="dropdown-item">Profile</a>
                         <a href="{%url 'logout_page' %}" class="dropdown-item">Logout</a>
                         <a href="{% url 'results' %}" class="dropdown-item">Recent Results</a>
+                        {% if profile.is_organizer %}
+                        <a href="{% url 'o_dashboard' %}" class="dropdown-item">Dashboard</a>
+                        {% endif %}
                         <div class="dropdown-divider"></div>
                     </div>
                 </li>
@@ -52,11 +50,10 @@
             </ul>
 
             {% else %}
-            <button type="button" class="btn btn-primary"><a class="text-white"
-                    href="{%url 'register_page'%}">Signup</a></button>
-
-            <button type="button" class="btn btn-success m-2"><a class="text-white"
-                    href="{%url 'login_page'%}">Login</a></button>
+            <ul class="navbar-nav ml-auto">
+                <a class="text-white" href="{%url 'register_page'%}"><button type="button" class="btn btn-primary m-2">Signup</button></a>
+                <a class="text-white" href="{%url 'login_page'%}"><button type="button" class="btn btn-success m-2">Login</button></a>
+            </ul>
             {% endif %}
         </div>
     </nav>
