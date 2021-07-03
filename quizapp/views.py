@@ -56,7 +56,7 @@ def logout_page(request):
     messages.success(request,"Successfully Logged Out")
     return redirect('home')
 
-
+@login_required(login_url='login_page')
 def userProfile(request):
     user = User.objects.get(username=request.user)
     profile = Profile.objects.get(user=user)
@@ -88,9 +88,12 @@ def userProfile(request):
 
 
 def home(request):
-    username = request.user
-    user = User.objects.get(username=username)
-    profile = Profile.objects.get(user=user)
+    try:
+        username = request.user
+        user = User.objects.get(username=username)
+        profile = Profile.objects.get(user=user)
+    except:
+        profile = None
     tests = Test.objects.all()
     context = {'tests':tests, 'profile': profile}
     # context = {'tests':tests}
@@ -141,8 +144,9 @@ def result(request, category):
 def results(request):
     username = request.user
     user = User.objects.get(username=username)
+    profile = Profile.objects.get(user=user)
     tests = Student.objects.filter(user=user)
-    context = {"responses": tests}
+    context = {"responses": tests, 'profile':profile}
     return render(request, 'results.html', context)
     
 

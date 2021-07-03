@@ -1,0 +1,25 @@
+ <!-- Header Section -->
+ {% include 'organizer_dashboard/dashboard_header.html' %}
+ <!-- Header Section Ends Here -->
+
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Student</th>
+        <th scope="col">Test</th>
+        <th scope="col">Score</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+      <tr>
+        <th scope="row">{{student.user}}</th>
+        <td>{{student.test}}</td>
+        <td>{{student.score}}</td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+  </div>

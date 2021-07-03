@@ -109,3 +109,13 @@ def addQuestions(request):
 
 
     return render(request,'organizer_dashboard/addQuestionForm.html',context=context)
+
+def user_results(request):
+    username = request.user
+    user = User.objects.get(username=username)
+    tests = Test.objects.filter(user=user)
+    students = []
+    for test in tests:
+        students += list(Student.objects.filter(test=test))
+    context = {'students': students}
+    return render(request, 'organizer_dashboard/results.html', context)
