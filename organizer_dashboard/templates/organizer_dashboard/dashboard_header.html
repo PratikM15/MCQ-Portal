@@ -3,14 +3,17 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+<link rel="stylesheet" href="{%static 'css/dashboardStyle.css' %}">
+
+
 
 <!-- Header Section -->
-<nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background: #093a46; color: #fff;">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm text-dark" style=" color: rgb(27, 6, 41);">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
         aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand text-white" href="{%url 'o_dashboard'%}" ><em><strong>Exammer Dashboard  </strong>  </em>  </a>
+    <a class="navbar-brand text-white" href="{%url 'o_dashboard'%}"><em>Exammer Dashboard</em> </a>
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -22,28 +25,40 @@
 
         {% if user.username %}
 
-        <ul class="navbar-nav ">
+        <div class="profile-menu">
+            <div class="profile" onclick="menuToggle()">
+                <img src="{%static 'images/userprofile.png' %}" alt="user-profile" style="height:60%; width: 60%;"
+                    class="my-2">
+            </div>
+            <div class="menu">
+                <h3 class="text-succss"> {{request.user | title}} <br> <span class="mt-3"> Organizer</span></h3>
+                <ul>
+                    <li><i class="far fa-user-circle"> </i>
+                        <a href="#" class="menu-item"> My Profile</a>
+                    </li>
+                    <li><i class="fas fa-user-edit"></i>
+                        <a href="#" class="menu-item"> Edit Profile</a>
+                    </li>
+                    <li><i class="far fa-cog"></i>
+                        <a href="#" class="menu-item"> Setting</a>
+                    </li>
+                    <li><i class="far fa-question-circle"></i>
+                        <a href="#" class="menu-item"> Help</a>
+                    </li>
+                    <li><i class="fas fa-sign-out-alt"></i>
+                        <a href="{%url 'o_logout' %}" class="menu-item">Logout</a>
+                    </li>
+                </ul>
+            </div>
 
-            <li class="nav-item dropdown">
-
-                <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                    data-toggle="dropdown"> <span class="text-light m-2 font-bold"
-                        style="font-size: 1.1rem;">Welcome,
-                        <strong class="text-warning"> {{request.o_user | title}}</strong></span></a>
-
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a href="{%url 'logout_page' %}" class="dropdown-item btn btn-success">Logout</a>
-                    <!-- <div class="dropdown-divider"></div> -->
-                </div>
-            </li>
-            <img src="{%static 'images/userprofile.png' %}" alt="" style="height:80%; width: 80%;" class="my-auto">
-        </ul>
+        </div>
 
         {% else %}
         <button type="button" class="btn btn-outline-success"><a class="text-white text-decoration-none"
                 href="{%url 'organizer_registration'%}">Signup</a></button>
 
-        <button type="button" class="btn btn-outline-success m-2"><a class="text-white text-decoration-none" href="{%url 'organizer_login'%}">Login</a></button>
+        <button type="button" class="btn btn-outline-success m-2"><a class="text-white text-decoration-none"
+                href="{%url 'organizer_login'%}">Login</a></button>
         {% endif%}
     </div>
 </nav>
@@ -62,4 +77,13 @@
 <!-- Header Section Ends Here -->
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+<script>
+    function menuToggle() {
+        const toggleMenu = document.querySelector('.menu');
+        toggleMenu.classList.toggle('active');
+    }
+</script>
