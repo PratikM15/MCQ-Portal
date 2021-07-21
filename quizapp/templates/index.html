@@ -13,8 +13,8 @@
 
     <title>Exammer</title>
 </head>
-
 <body>
+    {% include 'main.html' %}
     <!-- Header section -->
     {% include "quizapp/header.html" %}
     <!-- Header Section ends -->
@@ -30,8 +30,8 @@
                     <div class="card-body">
                         <h5 class="card-title">{{test.category}}</h5>
                         <p class="card-text">{{test.description}}</p>
-                        <a href="{% url 'register' category=test.category %}" class="btn text-white"
-                            style="background: #092346;">Take a Quiz</a>
+                        <a href="{% url 'register' category=test.category %}" class="btn btn-style"
+                        >Take a Quiz <i class="fas fa-arrow-right m-1"></i> </a>
                     </div>
                 </div>
             </div>
@@ -39,15 +39,6 @@
         </div>
     </div>
 
-
-    <div class="card mt-5 bg-light m" style="width: 100%;background-color: #092346;">
-        <div class="card-body" style="background-color: #092346;color:white">
-            <center>
-            <h5 class="card-title">Register as Organizer</h5>
-            <a href="{% url 'organizer_registration' %}" class="card-link"><button type="button" class="btn btn-info m-2">Register here</button></a>
-            <a href="{% url 'organizer_login' %}" class="card-link"><button type="button" class="btn btn-warning m-2">Login</button> </a></center>
-        </div>
-    </div>
 
 
     <!-- Optional JavaScript -->

@@ -10,10 +10,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-    <title>Register | Exammer</title>
+    <title>Register | eGyanam Learning Center</title>
 </head>
 
 <body>
+
+    <!-- Main File -->
+    {% include 'main.html' %}
 
     <!-- Header Section -->
     {% include 'quizapp/header.html' %}
@@ -40,7 +43,8 @@
             <button type="submit" class="btn text-white" style="background:#092346;">Submit</button>
         </form>
 
-        <h5 class="text-secondary text-center" style="font-size: 1rem;">Already have an account? <a href="{%url 'login_page'%}">Login</a></h5>
+        <h5 class="text-secondary text-center" style="font-size: 1rem;">Already have an account? <a
+                href="{%url 'login_page'%}">Login</a></h5>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"

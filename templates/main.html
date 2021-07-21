@@ -1,0 +1,122 @@
+{%load static%}
+
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+
+
+
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+         <img src="{%static 'images/_logo.png' %}" class="logo" alt="" height="150px" width="150px">
+        </div>
+
+        <ul class="list-unstyled components">
+            <p class="brand-name">eGyanam Learning Center</p>
+            <li class="active">
+                
+                <a href="{%url 'home' %}" data-toggle="collapse" aria-expanded="false" class=" menu-item"> Home</a>
+                
+            </li>
+            <li>
+                <a class="menu-item" href="#">About</a>
+            </li>
+            <li>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle menu-item">Pages</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a href="#" class="menu-item">Organizer</a>
+                    </li>
+                    <li>
+                        <a href="#" class="menu-item">Student</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="menu-item">Portfolio</a>
+            </li>
+            <li>
+                <a href="#" class="menu-item">Contact</a>
+            </li>
+        </ul>
+
+        <ul class="list-unstyled CTAs">
+            <li>
+                <a href="{%url 'organizer_registration' %}" class="download">Register as Organizer</a>
+            </li>
+            <li>
+                <a href="{%url 'o_dashboard' %}" class="article">Go to Dashboard</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content">
+
+        <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <i class="fas fa-align-left"></i>
+                    <span>Toggle Sidebar</span>
+                </button>
+                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <i class="fas fa-align-justify"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    {% if user.is_authenticated %}
+                    <div class="profile-menu">
+                        <div class="profile" onclick="menuToggle()">
+                            <img src="{%static 'images/userprofile.png' %}" alt="user-profile"
+                                style="height:60%; width: 60%;" class="my-2">
+                        </div>
+                        <div class="menu">
+                            <h3 class="text-succss"> {{request.user | title}} <br> <span class="mt-3"> Organizer</span></h3>
+                            <ul>
+                                <li><i class="far fa-user-circle"> </i>
+                                    <a href="{%url 'user-profile' %}" class="menu-item"> My Profile</a>
+                                </li>
+                                <li><i class="fas fa-user-edit"></i>
+                                    <a href="{%url 'user-profile' %}" class="menu-item"> Edit Profile</a>
+                                </li>
+            
+                                <li><i class="far fa-question-circle"></i>
+                                    <a href="#" class="menu-item"> Help</a>
+                                </li>
+                                <li><i class="fas fa-sign-out-alt"></i>
+                                    <a href="{%url 'logout_page' %}" class="menu-item">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+    
+                    </div>
+
+                    {% else %}
+                    <ul class="nav navbar-nav ml-auto">
+
+                        <li class="nav-item active">
+                            <a class="nav-link btn-style" href="#" style=" padding: 0.5rem 2rem;">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn-style" href="#" style=" padding: 0.5rem 2rem;"> Login</a>
+                        </li>
+                    </ul>
+                    {%endif%}
+                </div>
+            </div>
+        </nav> -->
+
+
+
+        <script>
+            $(document).ready(function () {
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar').toggleClass('active');
+                });
+            });
+        </script>

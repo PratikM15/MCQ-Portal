@@ -11,29 +11,35 @@
 </head>
 
 <body>
-<!-- Header Section -->
-{% include 'quizapp/header.html' %}
-<!-- Header Section Ends Here -->
+
+    <!-- Main File -->
+    {% include 'main.html' %}
 
 
-<div class="container w-50 mt-4 border p-3 shadow-lg">
-    <h2 class="heading text-center">Exammer Login</h2>
-    <form class="p-3" method="POST" action="login">
-        {% csrf_token %}
+    <!-- Header Section -->
+    {% include 'quizapp/header.html' %}
+    <!-- Header Section Ends Here -->
 
-        <div class="mb-3">
-            <label for="loginusername" class="form-label">Username</label>
-            <input type="text" class="form-control" id="loginusername" name='loginusername'>
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" name='loginpassword'>
-        </div>
-        <button type="submit" class="btn text-white" style="background:#092346;">Submit</button>
 
-    </form>
-    <h5 class="text-secondary text-center" style="font-size: 1rem;">Don'thave an account? <a href="{%url 'register_page'%}">Register</a></h5>
-</div>
+    <div class="container w-50 mt-4 border p-3 shadow-lg">
+        <h2 class="heading text-center">Exammer Login</h2>
+        <form class="p-3" method="POST" action="login">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="loginusername" class="form-label">Username</label>
+                <input type="text" class="form-control" id="loginusername" name='loginusername'>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" name='loginpassword'>
+            </div>
+            <button type="submit" class="btn text-white" style="background:#092346;">Submit</button>
+
+        </form>
+        <h5 class="text-secondary text-center" style="font-size: 1rem;">Don'thave an account? <a
+                href="{%url 'register_page'%}">Register</a></h5>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"

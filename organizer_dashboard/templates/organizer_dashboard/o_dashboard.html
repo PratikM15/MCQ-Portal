@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,16 +13,44 @@
   <!-- Font awesome icon cdn  -->
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
   <title>Dashboard</title>
 </head>
 
 <body>
-  <!-- Header Section -->
-  {% include 'organizer_dashboard/o_header.html' %}
-  <!-- Header Section Ends Here -->
+
+  {% include 'main.html' %}
+
+  {% if user.is_authenticated %}
+
+  <div class="position-relative">
+
+    <div class="position-absolute top-0 end-0 d-flex flex-row mb-5">
+
+      <p class="m-2 border-bottom border-2"> <strong style="color: #C9383C;">{{request.user| title }} </strong></p>
+      <a href="{%url 'logout_page' %}" class="dropdown-item btn-style">Logout</a>
+    </div>
+  </div>
 
 
-  <div class="container w-75 border mt-5 p-4 rounded rounded-lg shadow-lg">
+  <!-- <ul class="navbar-nav" style="float: right;">
+
+    <li class="nav-item dropdown">
+
+      <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"> <span
+          class="text-light m-2" style="font-size: 1.1rem;"> {{request.user |title}}</span></a>
+
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a href="{%url 'logout_page' %}" class="dropdown-item">Logout</a>
+        <a href="{% url 'results' %}" class="dropdown-item">Recent Results</a>
+        <div class="dropdown-divider"></div>
+      </div>
+    </li>
+
+  </ul> -->
+  {%endif%}
+  <div class="container w-75 border mt-5 p-4 rounded rounded-lg shadow-lg" style="margin-top: 8rem ! important;">
     <h2 class="h2 heading text-center mb-4" style="color:coral">Dashboard Task</h2>
     <div class="row">
       <div class="col-sm-6 mt-2">
