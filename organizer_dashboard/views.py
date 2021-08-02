@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login , logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from quizapp.models import *
+from .models import *
 from .forms import AddQuestionForm
 # Create your views here.
 
@@ -10,8 +11,9 @@ def organizer_dashboard(request):
     username = request.user
     user = User.objects.get(username=username)
     profile = Profile.objects.get(user=user)
+    context = {'profile':profile}
     if profile.is_organizer:
-        return render(request,'organizer_dashboard/o_dashboard.html')
+        return render(request,'organizer_dashboard/o_dashboard.html', context)
     return redirect('organizer_registration')
 
 def organizer_registration(request):
@@ -119,3 +121,35 @@ def user_results(request):
         students += list(Student.objects.filter(test=test))
     context = {'students': students}
     return render(request, 'organizer_dashboard/results.html', context)
+
+def add_batch(request):
+    username = request.user
+    user = User.objects.get(username=username)
+    if request.method == "POST":
+        name = request.POST["name"]
+        size = request.POST['size']
+        batch = Batch(name=name, size=size, organizer=user)
+        batch.save()
+        return redirect('batch')
+    batches = Batch.objects.filter(organizer=user)
+    context = {'batches':batches}
+    return render(request, 'organizer_dashboard/batch.html', context)
+
+def register_batch(request, id):
+    username = request.user
+    user = User.objects.get(username=username)
+    batch = Batch.objects.get(external_id=id)
+    num = len(BatchStudent.objects.all())
+    batchStudent = BatchStudent.objects.filter(batch=batch).filter(student=user)
+    if batchStudent:
+        messages.error(request, "Already Registered for this batch.")
+        return redirect('home')
+    if num < int(batch.size):
+        batchStudent = BatchStudent(student=user, batch=batch)
+        batchStudent.save()
+        msg = "Successfully Registered For Batch: "+ batch.name
+        messages.success(request, msg)
+        return redirect('home')
+    else:
+        messages.error(request, "Batch Full")
+        return redirect('home')

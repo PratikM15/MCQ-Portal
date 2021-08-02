@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from organizer_dashboard.models import *
 
 
 
@@ -94,8 +95,9 @@ def home(request):
         profile = Profile.objects.get(user=user)
     except:
         profile = None
+    batches = Batch.objects.all()
     tests = Test.objects.all()
-    context = {'tests':tests, 'profile': profile}
+    context = {'tests':tests, 'profile': profile, 'batches':batches}
     # context = {'tests':tests}
 
     

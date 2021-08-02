@@ -1,23 +1,22 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Register | egyanam</title>
+    <title>Exammer</title>
 </head>
-
 <body>
-
-    <!-- Header Section -->
-    {% include 'organizer_dashboard/o_header.html' %}
-    <!-- Header Section Ends Here -->
+    {% include 'main.html' %}
+    <!-- Header section -->
+    {% include "quizapp/header.html" %}
 
     <div class="container w-50 mt-4 border p-3 shadow-lg">
         <h2 class="heading text-center">Organizer Registration</h2>
