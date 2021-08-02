@@ -69,4 +69,4 @@ class Profile(models.Model):
     is_organizer = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user
+        return self.user.email

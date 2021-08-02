@@ -23,31 +23,20 @@
                 <a class="menu-item" href="#">About</a>
             </li>
             <li>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle menu-item">Pages</a>
-                <ul class="collapse list-unstyled" id="pageSubmenu">
-                    <li>
-                        <a href="#" class="menu-item">Organizer</a>
-                    </li>
-                    <li>
-                        <a href="#" class="menu-item">Student</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#" class="menu-item">Portfolio</a>
-            </li>
-            <li>
                 <a href="#" class="menu-item">Contact</a>
             </li>
         </ul>
 
         <ul class="list-unstyled CTAs">
-            <li>
-                <a href="{%url 'organizer_registration' %}" class="download">Register as Organizer</a>
-            </li>
+            {% if profile.is_organizer %}
             <li>
                 <a href="{%url 'o_dashboard' %}" class="article">Go to Dashboard</a>
             </li>
+            {% else %}
+            <li>
+                <a href="{%url 'organizer_registration' %}" class="download">Register as Organizer</a>
+            </li>
+            {% endif %}
         </ul>
     </nav>
 

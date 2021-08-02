@@ -19,24 +19,19 @@
     {% include "quizapp/header.html" %}
     <!-- Header Section ends -->
 
-
 <div class="container w-75 border mt-2 p-4 rounded rounded-lg shadow-lg">
- <h2 class="h2 text-center mb-4">Create Test</h2>
- <form method="POST" action="">
+ <h2 class="h2 text-center mb-4">Create Batch</h2>
+ <form method="POST" action="{% url 'batch' %}">
      {% csrf_token %}
      <div class="form-row">
        <div class="col">
-         <input type="text" class="form-control" name="category" placeholder="Category">
+         <input type="text" class="form-control" name="name" placeholder="Name of Batch">
        </div>
        <div class="col">
-         <input type="text" class="form-control" name="time" placeholder="Enter time in minute">
+         <input type="text" class="form-control" name="size" placeholder="Batch Size">
        </div>
      </div>
-     <div class="form-group mt-2">
-       <label for="exampleFormControlTextarea1" class="text-primary">Test Description</label>
-       <textarea class="form-control" id="exampleFormControlTextarea1" name="desc" rows="3" ></textarea>
-     </div>
-     <button class="btn btn-success">Add test</button>
+     <button class="btn btn-success">Add Batch</button>
      <a href="{% url 'o_dashboard' %}" class="text-danger m-4"><strong>Cancel</strong> </a>
    </form>
 </div>
@@ -45,17 +40,17 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">Test</th>
-        <th scope="col">Time</th>
+        <th scope="col">Batch</th>
+        <th scope="col">Size</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
       </tr>
     </thead>
     <tbody>
-        {% for test in tests %}
+        {% for batch in batches %}
       <tr>
-        <th scope="row">{{test.category}}</th>
-        <td>{{test.test_time}}</td>
+        <th scope="row">{{batch.name}}</th>
+        <td>{{batch.size}}</td>
         <td><a href=""><button class="btn btn-warning">Edit</button></a></td>
         <td><a href=""><button class="btn btn-danger">Delete</button></a></td>
       </tr>
