@@ -66,24 +66,54 @@ def o_logout(request):
 def addtest(request):
     username = request.user
     user = User.objects.get(username=username)
+    profile = Profile.objects.get(user=user)
     if request.method == 'POST':
+        name = request.POST['name']
         category = request.POST['category']
         desc = request.POST['desc']
         time = request.POST['time']
-        testInfo  = Test(user=user,category=category,description=desc,test_time=time)
-        testInfo.save()
+        testInfo  = Test(user=user, name=name, category=category, description=desc, test_time=time)
+        testInfo.save() 
         message = "Test for {} category created successfully.".format(category)
         messages.success(request, message)
-        return redirect('o_dashboard')
+        return redirect('addtest')
     tests = Test.objects.filter(user=user)
-    context = {"tests":tests}
+    context = {"tests":tests, 'profile':profile}
     return render(request,'organizer_dashboard/addtestForm.html', context)
-    
 
+def editTest(request, id):
+    username = request.user
+    user = User.objects.get(username=username)
+    test = Test.objects.get(external_id=id)
+    profile = Profile.objects.get(user=user)
+    if request.method == 'POST':
+        name = request.POST['name']
+        category = request.POST['category']
+        desc = request.POST['desc']
+        time = request.POST['time']
+        test.name = name
+        test.category = category
+        test.description = desc
+        test.test_time = time
+        test.save()
+        message = "Test Edited successfully."
+        messages.success(request, message)
+        return redirect('addtest')
+    tests = Test.objects.filter(user=user)
+    context = {"tests":tests, 'test':test, 'profile':profile}
+    return render(request,'organizer_dashboard/addtestForm.html', context)
+
+def deleteTest(request, id):
+    test = Test.objects.get(external_id=id)
+    test.delete()
+    message = "Test Deleted successfully."
+    messages.success(request, message)
+    return redirect('addtest')
+    
 def addQuestions(request):
     username = request.user
     user = User.objects.get(username=username)
-
+    profile = Profile.objects.get(user=user)
     if request.method == 'POST':
         question = request.POST['question']
         choice1 = request.POST['choice1']
@@ -92,25 +122,61 @@ def addQuestions(request):
         choice4 = request.POST['choice4']
         correctchoice = request.POST['correctchoice']
         category = request.POST['category']
+        level = request.POST['level']
         test = Test.objects.get(external_id=category)
-        create_question = Question(test=test, question=question,choice1=choice1,choice2=choice2,choice3=choice3,choice4=choice4,answer=correctchoice)
+        create_question = Question(test=test, question=question, choice1=choice1, choice2=choice2, 
+        choice3=choice3, choice4=choice4, answer=correctchoice, level=level)
         create_question.save()
         msg2 = "Question added to question bank."
         messages.success(request, msg2)
         return redirect('addQuestions')
-
-    
     tests = Test.objects.filter(user=user)
     questions = []
     for test in tests:
         questions += list(Question.objects.filter(test=test))
-    print(tests)
-    context = { 'tests':tests, 'questions':questions}
-    
-
-
-
+    context = { 'tests':tests, 'questions':questions, 'profile':profile}
     return render(request,'organizer_dashboard/addQuestionForm.html',context=context)
+
+def editQuestion(request, id):
+    question = Question.objects.get(external_id=id)
+    username = request.user
+    user = User.objects.get(username=username)
+    profile = Profile.objects.get(user=user)
+    if request.method == 'POST':
+        question = request.POST['question']
+        choice1 = request.POST['choice1']
+        choice2 = request.POST['choice2']
+        choice3 = request.POST['choice3']
+        choice4 = request.POST['choice4']
+        correctchoice = request.POST['correctchoice']
+        category = request.POST['category']
+        level = request.POST['level']
+        test = Test.objects.get(external_id=category)
+        question.question = question
+        question.choice1 = choice1
+        question.choice2 = choice2
+        question.choice3 = choice3
+        question.choice4 = choice4
+        question.answer = correctchoice
+        question.test = test
+        question.level = level
+        question.save()
+        msg2 = "Question Updated Successfully."
+        messages.success(request, msg2)
+        return redirect('addQuestions')
+    tests = Test.objects.filter(user=user)
+    questions = []
+    for test in tests:
+        questions += list(Question.objects.filter(test=test))
+    context = { 'tests':tests, 'questions':questions, 'profile':profile, 'question':question}
+    return render(request,'organizer_dashboard/addQuestionForm.html',context=context)
+
+def deleteQuestion(request, id):
+    question = Question.objects.get(external_id=id)
+    question.delete()
+    msg2 = "Question Deleted Successfully."
+    messages.success(request, msg2)
+    return redirect('addQuestions')
 
 def user_results(request):
     username = request.user
@@ -153,3 +219,51 @@ def register_batch(request, id):
     else:
         messages.error(request, "Batch Full")
         return redirect('home')
+
+def addVideo(request):
+    username = request.user
+    user = User.objects.get(username=username)
+    profile = Profile.objects.get(user=user)
+    if request.method == 'POST':
+        title = request.POST['title']
+        url = request.POST['url']
+        newurl = url.split('=')
+        newurl = "https://www.youtube.com/embed/" + newurl[-1]
+        description = request.POST['description']
+        video = Video(organizer=user, title=title, description=description, url=newurl)
+        video.save()
+        msg2 = "Video Added Successfully."
+        messages.success(request, msg2)
+        return redirect('add-video')
+    videos = Video.objects.filter(organizer=user)
+    context = {'videos':videos, 'profile':profile}
+    return render(request,'organizer_dashboard/addVideos.html',context=context)
+
+def updateVideo(request, id):
+    video = Video.objects.get(external_id=id)
+    username = request.user
+    user = User.objects.get(username=username)
+    profile = Profile.objects.get(user=user)
+    if request.method == 'POST':
+        title = request.POST['title']
+        url = request.POST['url']
+        newurl = url.split('=')
+        newurl = "https://www.youtube.com/embed/"+newurl[-1]
+        description = request.POST['description']
+        video.title = title
+        video.description = description
+        video.url = newurl
+        video.save()
+        msg2 = "Video Updated Successfully."
+        messages.success(request, msg2)
+        return redirect('add-video')
+    videos = Video.objects.filter(organizer=user)
+    context = {'videos':videos, 'profile':profile, 'video':video}
+    return render(request,'organizer_dashboard/addVideos.html',context=context)
+
+def deleteVideo(request, id):
+    video = Video.objects.get(external_id=id)
+    video.delete()
+    msg2 = "Video Deleted Successfully."
+    messages.success(request, msg2)
+    return redirect('add-video')

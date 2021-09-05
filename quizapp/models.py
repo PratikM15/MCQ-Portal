@@ -6,13 +6,12 @@ from django.contrib.auth.models import User
 class Test(models.Model):
     external_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
     category = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
     active = models.BooleanField(default=True)
     test_time = models.CharField(max_length=3, default=None)
     
-    
-
     def __str__(self):
         return self.category
 

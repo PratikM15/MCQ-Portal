@@ -97,7 +97,8 @@ def home(request):
         profile = None
     batches = Batch.objects.all()
     tests = Test.objects.all()
-    context = {'tests':tests, 'profile': profile, 'batches':batches}
+    videos = Video.objects.all()
+    context = {'tests':tests, 'profile': profile, 'batches':batches, 'videos':videos}
     # context = {'tests':tests}
 
     

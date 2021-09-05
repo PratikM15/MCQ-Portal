@@ -21,31 +21,53 @@
 
 
 <div class="container w-75 border mt-2 p-4 rounded rounded-lg shadow-lg">
- <h2 class="h2 text-center mb-4">Create Test</h2>
- <form method="POST" action="">
+  {% if test %}
+    <h2 class="h2 text-center mb-4">Update Test</h2>
+    <form method="POST" action="{% url 'edit-test' id=test.external_id %}">
+    {% else %}
+    <h2 class="h2 text-center mb-4">Create Test</h2>
+    <form method="POST" action="{% url 'addtest' %}">
+  {%endif%}
+ 
      {% csrf_token %}
      <div class="form-row">
        <div class="col">
-         <input type="text" class="form-control" name="category" placeholder="Category">
+         <input type="text" class="form-control" name="name" placeholder="Name" value="{{test.name}}">
        </div>
        <div class="col">
-         <input type="text" class="form-control" name="time" placeholder="Enter time in minute">
+          <select class="form-control" name ="category">
+            {% if test.category == "Soft Skills" %}
+              <option value="Soft Skills" selected>Soft Skills</option>
+              <option value="Technical Skills">Technical Skills</option>
+            {% else %}
+              <option value="Soft Skills">Soft Skills</option>
+              <option value="Technical Skills" selected>Technical Skills</option>
+            {% endif %}
+          </select>
+      </div>
+       <div class="col">
+         <input type="text" class="form-control" name="time" placeholder="Enter time in minute" value="{{test.test_time}}">
        </div>
      </div>
      <div class="form-group mt-2">
        <label for="exampleFormControlTextarea1" class="text-primary">Test Description</label>
-       <textarea class="form-control" id="exampleFormControlTextarea1" name="desc" rows="3" ></textarea>
+       <input type="text" class="form-control" name="desc" placeholder="Description" value="{{test.description}}">
      </div>
-     <button class="btn btn-success">Add test</button>
+     {% if test %}
+     <button type="submit" class="btn btn-success">Update</button>
+     {% else %}
+     <button type="submit" class="btn btn-success">Add</button>
+     {% endif %}
      <a href="{% url 'o_dashboard' %}" class="text-danger m-4"><strong>Cancel</strong> </a>
    </form>
 </div>
 
-<div class="container">
+<div class="container" style="margin-top: 20px;">
   <table class="table">
     <thead>
       <tr>
         <th scope="col">Test</th>
+        <th scope="col">Category</th>
         <th scope="col">Time</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
@@ -54,10 +76,11 @@
     <tbody>
         {% for test in tests %}
       <tr>
+        <th scope="row">{{test.name}}</th>
         <th scope="row">{{test.category}}</th>
         <td>{{test.test_time}}</td>
-        <td><a href=""><button class="btn btn-warning">Edit</button></a></td>
-        <td><a href=""><button class="btn btn-danger">Delete</button></a></td>
+        <td><a href="{% url 'edit-test' id=test.external_id %}"><button class="btn btn-warning">Edit</button></a></td>
+        <td><a href="{% url 'delete-test' id=test.external_id %}"><button class="btn btn-danger">Delete</button></a></td>
       </tr>
       {%endfor%}
     </tbody>

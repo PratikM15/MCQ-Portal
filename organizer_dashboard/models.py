@@ -18,4 +18,14 @@ class BatchStudent(models.Model):
     batch = models.ForeignKey(Batch, on_delete=models.CASCADE)
 
     def __str__(self):
-        return batch.name + student.username
+        return self.batch.name + self.student.username
+
+class Video(models.Model):
+    external_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    organizer = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    description = models.CharField(max_length=500)
+    url = models.URLField(max_length=500)
+
+    def __str__(self):
+        return self.title
