@@ -22,7 +22,7 @@
     <div class="container w-75">
         <div class="content align-items-right">
             <h4 class="h4 text-info">Explore Your Capabilities !</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque illum deleniti quos blanditiis vel quod praesentium sit molestias iste nam.</p>
+            <p>Learn, Inspire,  Grow. Test your skills.</p>
             <div class="wrap">
                 <img src="{% static 'images/homePage.png' %}" class="img-fluid" alt="Responsive image">
                 <!-- <img src="" alt="home page" height="600px" width="600px"> -->
@@ -37,10 +37,11 @@
         <center><h2>Tests</h2></center>
         <div class="row">
             {% for test in tests %}
-            <div class="col-sm-6 p-3">
-                <div class="card w-75">
+            <div class="col-sm-4 p-3">
+                <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{test.category}}</h5>
+                        <h5 class="card-title">{{test.name}}</h5>
+                        <P>Category: {{test.category}}</P>
                         <p class="card-text">{{test.description}}</p>
                         <a href="{% url 'register' category=test.category %}" class="btn btn-style"
                         >Take a Quiz <i class="fas fa-arrow-right m-1"></i> </a>
@@ -55,8 +56,8 @@
         <center><h2>Batches</h2></center>
         <div class="row">
             {% for batch in batches %}
-            <div class="col-sm-6 p-3">
-                <div class="card w-75">
+            <div class="col-sm-4 p-3">
+                <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{{batch.name}}</h5>
                         <p class="card-text">Batch Size: {{batch.size}}</p>
@@ -73,10 +74,10 @@
         <center><h2>Learning Videos</h2></center>
         <div class="row">
             {% for video in videos %}
-            <div class="col-sm-6 p-3">
-                <div class="card w-75">
+            <div class="col-sm-4 p-3">
+                <div class="card">
                     <div class="card-body">
-                        <iframe height="200" width="300" src="{{video.url}}" title="YouTube Video player" frameborder="0" 
+                        <iframe height="200" width="260" src="{{video.url}}" title="YouTube Video player" frameborder="0" 
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
     allowfullscreen></iframe>
                         <h5 class="card-title">{{video.title}}</h5>

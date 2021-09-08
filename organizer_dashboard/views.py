@@ -227,7 +227,10 @@ def addVideo(request):
     if request.method == 'POST':
         title = request.POST['title']
         url = request.POST['url']
-        newurl = url.split('=')
+        if "=" in url:
+            newurl = url.split('=')
+        else:
+            newurl = url.split("/")
         newurl = "https://www.youtube.com/embed/" + newurl[-1]
         description = request.POST['description']
         video = Video(organizer=user, title=title, description=description, url=newurl)
@@ -247,7 +250,10 @@ def updateVideo(request, id):
     if request.method == 'POST':
         title = request.POST['title']
         url = request.POST['url']
-        newurl = url.split('=')
+        if "=" in url:
+            newurl = url.split('=')
+        else:
+            newurl = url.split("/")
         newurl = "https://www.youtube.com/embed/"+newurl[-1]
         description = request.POST['description']
         video.title = title
